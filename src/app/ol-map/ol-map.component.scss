@@ -1,0 +1,83 @@
+#map {
+    width: 100vw;
+    height: 100vh;
+}
+
+.content_map {
+    position: relative;
+}
+
+.group_btn {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    padding: 8% 2%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.text-details {
+    display: -webkit-box!important;
+    height: 68px!important;
+    margin: 0 auto!important;
+    white-space: initial!important;
+    font-size: 14px!important;
+    line-height: 22px!important;
+    -webkit-line-clamp: 3!important;
+    -webkit-box-orient: vertical!important;
+    overflow: hidden!important;
+    text-overflow: ellipsis!important;
+}
+
+// -- ol map popup --
+.ol-popup {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: -50px;
+    min-width: 280px;
+    z-index: 10;
+}
+
+.ol-popup:after,
+.ol-popup:before {
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.ol-popup:after {
+    border-top-color: white;
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px;
+}
+
+.ol-popup:before {
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 48px;
+    margin-left: -11px;
+}
+
+.ol-popup-closer {
+    text-decoration: none;
+    position: absolute;
+    top: 2px;
+    right: 8px;
+}
+
+.ol-popup-closer:after {
+    content: "✖";
+}

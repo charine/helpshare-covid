@@ -1,2 +1,4 @@
-# Help Share
-โปรเจคแบ่งปันความช่วยเหลือ ให้กับผู้ที่ประสบความลำบาก จากสถานการณ์การระบาดของ Covid-19
+# HelpshareCovid
+
+## Plugin
+[angularx-social-login](https://www.npmjs.com/package/angularx-social-login)

@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/map">Help Share</a>
+</nav>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-sm-12 col-md-8">
+            <form [formGroup]="addForm" (ngSubmit)="onSubmit(addForm.value)">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">หมวดหมู่เรื่อง</label>
+                    <select formControlName="category" class="form-control" id="exampleFormControlSelect1">
+                        <option value="">-- กรุณาเลือกรายการ --</option>
+                        <option value="1">ต้องการความช่วยเหลือ</option>
+                        <option value="2">ให้ความช่วยเหลือ</option>
+                    </select>
+                    <div *ngIf="invalid && f.category.errors" class="mt-2 text-error">
+                        <div *ngIf="f.category.errors.required">กรุณาเลือกหมวดหมู่เรื่อง</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">ชื่อเรื่อง</label>
+                    <input type="text" class="form-control" formControlName="title" id="title">
+                    <div *ngIf="invalid && f.title.errors" class="mt-2 text-error">
+                        <div *ngIf="f.title.errors.required">กรุณาเพิ่มชื่อเรื่อง</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="detail">รายละเอียด</label>
+                    <textarea class="form-control" id="detail" formControlName="detail" rows="3" maxlength="500"></textarea>
+                    <small id="emailHelp" class="form-text text-muted">เพิ่มข้อความได้ 500 ตัวอักษร</small>
+                    <div *ngIf="invalid && f.detail.errors" class="mt-2 text-error">
+                        <div *ngIf="f.detail.errors.required">กรุณาเพิ่มรายละเอียด</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="images">เพิ่มรูปภาพ</label>
+                    <input #file type="file" accept='image/*' (change)="picked($event)" />
+                    <br>
+                    <div *ngIf="errFile">ไม่ใช่ไฟล์ภาพ กรุณาเลือกไฟล์ภาพ</div>
+                    <img [src]="imagePath" width="200" *ngIf="imagePath">
+                </div>
+
+                <button class="btn btn-primary" type="submit">บันทึก</button>
+            </form>
+        </div>
+    </div>
+</div>
