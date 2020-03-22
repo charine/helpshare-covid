@@ -1,3 +1,20 @@
+button,
+p,
+span,
+h5,
+a {
+    font-family: 'Prompt'!important;
+}
+
+.btn-back-m {
+    display: none;
+    float: left;
+    width: 25px;
+    height: auto;
+    margin-right: 15px;
+    margin-top: 3px;
+}
+
 .text-detail {
     display: -webkit-box;
     height: 68px;
@@ -9,4 +26,11 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+// Small devices (landscape phones, less than 768px)
+@media screen and (max-width: 767.98px) {
+    .btn-back-m {
+        display: block;
+    }
 }

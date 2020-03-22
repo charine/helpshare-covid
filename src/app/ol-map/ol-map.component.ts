@@ -193,15 +193,8 @@ export class OlMapComponent implements OnInit {
     // เช็คตำแหน่งมีการเปลี่ยนแปลง
     geolocation.on('change:position', ()=> {
       var coordinates = geolocation.getPosition();
-
-      // เปลี่ยน center ไปตามตำแหน่งที่ได้
-      // setTimeout(() => {
-      //   this.view.animate({
-      //     center: coordinates,
-      //     duration: 5000,
-      //     zoom: 9
-      //   });
-      // }, 3000);
+      // เปลี่ยน center ไปตามตำแหน่งปัจจุบัน
+      this.view.setCenter(coordinates);
       
       // positionFeature.setGeometry(coordinates ?
       //   new Point(coordinates) : null);
@@ -250,6 +243,7 @@ export class OlMapComponent implements OnInit {
         var iconFeature = new Feature({
           geometry: new Point(proj.fromLonLat([coor.lng, coor.lat])),
           title: coor.title,
+          category_id: coor.cat_id,
           category: coor.cat_name,
           detail: coor.detail,
           create: coor.date_create,
@@ -310,15 +304,21 @@ export class OlMapComponent implements OnInit {
         let getDate = new Date(feature.get('create'));
         console.log("getDate: ",feature.get('create'));
         
-        let date;
+        let date, typeCat;
         if (feature.get('create')) {
           date = getDate.getDate()+" / "+ getDate.getMonth()+" / "+getDate.getFullYear();
         }else{
           date = "-";
         }
+
+        if (feature.get('category_id') == 1) {
+          typeCat = '<span *ngIf="hl.cat_id == 1" class="badge badge-warning">'+feature.get('category')+'</span>';
+        } else {
+          typeCat = '<span *ngIf="hl.cat_id == 2" class="badge badge-success">'+feature.get('category')+'</span>';
+        }
          
         let setContent = '<div>'+
-              '<small><p class="card-subtitle mb-2 text-muted">ประเภท: '+feature.get('category')+'</p></small>'+
+              typeCat+
               '<h5 class="card-title">'+feature.get('title')+'</h5>'+
               '<p class="card-text text-details">'+feature.get('detail')+'</p>'+
               '<small><p class="card-subtitle mb-2 text-muted">สร้างเมื่อ: '+date+'</p></small>'+
@@ -332,7 +332,7 @@ export class OlMapComponent implements OnInit {
     // change mouse cursor when over marker
     this.map.on('pointermove', (e)=> {
       if (e.dragging) {
-        $(element).popover('destroy');
+        // $(element).popover('destroy');
         return;
       }
       var pixel = this.map.getEventPixel(e.originalEvent);

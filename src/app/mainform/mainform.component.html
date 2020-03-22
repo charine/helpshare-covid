@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/map">Help Share</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <a class="navbar-brand" [routerLink]="['/map']"><img class=" btn-back-m" src="assets/icon/back.png"> Help Share</a>
 </nav>
 
 <div class="container">
@@ -7,7 +7,7 @@
         <div class="col col-sm-12 col-md-8">
             <form [formGroup]="addForm" (ngSubmit)="onSubmit(addForm.value)">
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">หมวดหมู่เรื่อง</label>
+                    <label for="exampleFormControlSelect1"><span class="text-recommend">*</span> หมวดหมู่เรื่อง</label>
                     <select formControlName="category" class="form-control" id="exampleFormControlSelect1">
                         <option value="">-- กรุณาเลือกรายการ --</option>
                         <option value="1">ต้องการความช่วยเหลือ</option>
@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="title">ชื่อเรื่อง</label>
+                    <label for="title"><span class="text-recommend">*</span> ชื่อเรื่อง</label>
                     <input type="text" class="form-control" formControlName="title" id="title">
                     <div *ngIf="invalid && f.title.errors" class="mt-2 text-error">
                         <div *ngIf="f.title.errors.required">กรุณาเพิ่มชื่อเรื่อง</div>
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="detail">รายละเอียด</label>
+                    <label for="detail"><span class="text-recommend">*</span> รายละเอียด</label>
                     <textarea class="form-control" id="detail" formControlName="detail" rows="3" maxlength="500"></textarea>
                     <small id="emailHelp" class="form-text text-muted">เพิ่มข้อความได้ 500 ตัวอักษร</small>
                     <div *ngIf="invalid && f.detail.errors" class="mt-2 text-error">
@@ -43,7 +43,8 @@
                     <img [src]="imagePath" width="200" *ngIf="imagePath">
                 </div>
 
-                <button class="btn btn-primary" type="submit">บันทึก</button>
+
+                <button class="btn btn-round btn-submit color-green" type="submit">บันทึก</button>
             </form>
         </div>
     </div>
