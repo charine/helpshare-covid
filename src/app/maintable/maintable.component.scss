@@ -1,0 +1,12 @@
+.text-detail {
+    display: -webkit-box;
+    height: 68px;
+    margin: 0 auto;
+    white-space: initial;
+    font-size: 14px;
+    line-height: 22px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
