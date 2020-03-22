@@ -36,9 +36,9 @@ export class MainformComponent implements OnInit {
     this.loadHelpLog();
 
     this.addForm = this.formBuilder.group({
-      category: [1, Validators.required],
-      title: ['ทดสอบให้ความช่วยเหลือ', Validators.required],
-      detail: ['ทดสอบให้ความช่วยเหลือ', Validators.required]
+      category: ['', Validators.required],
+      title: ['', Validators.required],
+      detail: ['', Validators.required]
     });
   }
 

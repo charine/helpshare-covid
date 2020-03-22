@@ -1,3 +1,11 @@
+button,
+p,
+span,
+h5,
+a {
+    font-family: 'Prompt'!important;
+}
+
 #map {
     width: 100vw;
     height: 100vh;
@@ -7,6 +15,40 @@
     position: relative;
 }
 
+// Colors
+.color {
+    &-yellow {
+        background-color: #F7EA48;
+    }
+    &-red {
+        background-color: #E73C3E;
+        color: #ffffff;
+    }
+    &-white {
+        background-color: #ffffff;
+        color: #333333;
+    }
+    &-facebook {
+        background-color: #3b5998;
+        color: #ffffff;
+    }
+    &-google {
+        background-color: #DB4437;
+        color: #ffffff;
+    }
+}
+
+// Button Style
+.btn-round {
+    border-radius: 50px;
+    font-size: 14px;
+}
+
+.btn-icon {
+    width: 15px;
+    height: auto;
+}
+
 .group_btn {
     width: 100%;
     height: auto;
@@ -14,26 +56,14 @@
     bottom: 0;
     right: 0;
     z-index: 10;
-    padding: 8% 2%;
+    padding: 8% 0%;
     display: flex;
     justify-content: flex-end;
 }
 
-.text-details {
-    display: -webkit-box!important;
-    height: 68px!important;
-    margin: 0 auto!important;
-    white-space: initial!important;
-    font-size: 14px!important;
-    line-height: 22px!important;
-    -webkit-line-clamp: 3!important;
-    -webkit-box-orient: vertical!important;
-    overflow: hidden!important;
-    text-overflow: ellipsis!important;
-}
-
 // -- ol map popup --
 .ol-popup {
+    font-family: 'Prompt'!important;
     position: absolute;
     background-color: white;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);

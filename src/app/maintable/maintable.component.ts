@@ -12,6 +12,7 @@ export class MaintableComponent implements OnInit {
   constructor(private domSanitizer: DomSanitizer,) { }
 
   ngOnInit() {
+    // โหลดข้อมูลความช่วยเหลือ
     this.loadHelpLog();
   }
 
@@ -22,8 +23,17 @@ export class MaintableComponent implements OnInit {
       let gethelpLog = JSON.parse(getValue);
 
       gethelpLog.forEach(ele => {
+        // image
         if(ele.images){
           ele.images = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,'+ele.images);
+        }
+        // date
+        if (ele.date_create) {
+          let getdate = new Date(ele.date_create);
+
+          ele.date_create = getdate.getDate()+" / "+getdate.getMonth()+" / "+getdate.getFullYear();
+        } else {
+          ele.date_create = "-";
         }
 
         this.helpLog.push(ele);

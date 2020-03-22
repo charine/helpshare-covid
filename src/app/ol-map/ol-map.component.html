@@ -4,22 +4,22 @@
             <div class="row">
                 <div class="col col-12">
                     <div style="display: flex; justify-content: flex-end;">
-                        <button type="button" class="btn btn-primary mb-3" [routerLink]="['/maintable']">รายการ</button>
+                        <button type="button" class="btn btn-round color-yellow mb-3" [routerLink]="['/maintable']"><img src="assets/icon/list.png" class="btn-icon"> รายการ</button>
                     </div>
                 </div>
                 <div class="col col-12">
                     <div style="display: flex; justify-content: flex-end;">
-                        <button *ngIf="!btnShare" type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalContent">แบ่งปันข้อมูล</button>
+                        <button *ngIf="!btnShare" type="button" class="btn btn-round color-red mb-3" data-toggle="modal" data-target="#modalContent"><img src="assets/icon/pin.png" class="btn-icon"> แบ่งปันข้อมูล</button>
                     </div>
                 </div>
                 <div class="col col-12">
                     <div style="display: flex; justify-content: flex-end;">
-                        <button *ngIf="btnShare" type="button" class="btn btn-primary mb-3" [routerLink]="['/mainform']">แบ่งปันข้อมูล</button>
+                        <button *ngIf="btnShare" type="button" class="btn btn-round color-red mb-3" [routerLink]="['/mainform']"><img src="assets/icon/pin.png" class="btn-icon"> แบ่งปันข้อมูล</button>
                     </div>
                 </div>
                 <div class="col col-12">
                     <div style="display: flex; justify-content: flex-end;">
-                        <button *ngIf="btnShare" type="button" class="btn btn-primary mb-3" (click)="signOut()">ออกระบบ</button>
+                        <button *ngIf="btnShare" type="button" class="btn btn-round color-white mb-3" (click)="signOut()"><img src="assets/icon/logout.png" class="btn-icon"> ออกระบบ</button>
                     </div>
                 </div>
             </div>
@@ -39,8 +39,9 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <button type="button" (click)="signInWithFB()" *ngIf="loggedIn===false" class="btn btn-primary">Sign In With Facebook</button>
-                        <button type="button" (click)="signInWithGoogle()" *ngIf="loggedIn===false" class="btn btn-primary">Sign In With Google</button>
+                        <button type="button" (click)="signInWithFB()" *ngIf="loggedIn===false" class="btn btn-round color-facebook my-2 w-100">Sign In With Facebook</button>
+
+                        <button type="button" (click)="signInWithGoogle()" *ngIf="loggedIn===false" class="btn btn-round color-google my-2 w-100">Sign In With Google</button>
                     </div>
                 </div>
             </div>

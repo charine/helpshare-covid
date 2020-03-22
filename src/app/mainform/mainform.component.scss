@@ -1,0 +1,54 @@
+button,
+p,
+span,
+h5,
+a,
+label,
+select {
+    font-family: 'Prompt'!important;
+}
+
+// Colors
+.color {
+    &-green {
+        background-color: #8EDD65;
+    }
+}
+
+// Button Style
+.btn-round {
+    border-radius: 50px;
+    font-size: 14px;
+}
+
+.btn-submit {
+    width: 150px;
+    height: 35px;
+    margin: 0 auto;
+    display: block;
+}
+
+.btn-back-m {
+    display: none;
+    float: left;
+    width: 25px;
+    height: auto;
+    margin-right: 15px;
+    margin-top: 3px;
+}
+
+.text-recommend {
+    color: red;
+}
+
+.text-error {
+    color: red;
+    font-weight: 300;
+}
+
+// Small devices (landscape phones, less than 768px)
+@media screen and (max-width: 767.98px) {
+    .btn-back-m {
+        display: block;
+    }
+}
