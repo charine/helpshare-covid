@@ -78,7 +78,7 @@ export class MainformComponent implements OnInit {
       this.invalid = true;
     }else{
       this.invalid = false;
-      let cat_id, cat_name;
+      let cat_id, cat_name, social_id;
 
       // get category id & name.
       this.category.forEach(ele=>{
@@ -94,7 +94,12 @@ export class MainformComponent implements OnInit {
         this.loadUserLocations();
       }
 
-      // 13.8135792,100.6174051
+      // ตรวจสอบ social ที่เข้าใช้งาน
+      if(this.userProfile[0].provider == "GOOGLE"){
+        social_id = this.userProfile[0].gg_id;
+      }else{
+        social_id = this.userProfile[0].fb_id;
+      }
 
       let preparingData = {
         "cat_id": cat_id,
@@ -107,7 +112,8 @@ export class MainformComponent implements OnInit {
         "email": this.userProfile[0].email,
         "first_name": this.userProfile[0].first_name,
         "last_name": this.userProfile[0].last_name,
-        "fb_id": this.userProfile[0].fb_id,
+        "social_id": social_id,
+        "provider": this.userProfile[0].provider,
         "date_create": this.today.getTime()
       };
 

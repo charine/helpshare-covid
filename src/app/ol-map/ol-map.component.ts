@@ -49,58 +49,75 @@ export class OlMapComponent implements OnInit {
     this.initilizeHelpLog();
     // check user login
     this.checkStatusLogin();
-    
-    // User Login.
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-      
-      if(this.user){
-        let user = {
-          "first_name": this.user.facebook.first_name,
-          "last_name": this.user.facebook.last_name,
-          "fb_id": this.user.facebook.id,
-          "email": this.user.facebook.email,
-          "picture": this.user.facebook.picture,
-          "type": "FACEBOOK"
-        };
-        
-        // เก็บข้อมูลลงบน localstorage
-        localStorage.setItem('loggedIn', JSON.stringify(this.loggedIn));
-        localStorage.setItem('userProfile', JSON.stringify(user));
-
-        // ปิด popup ฟลังทำงานเสร็จ
-        $('#modalContent').modal('hide');
-        // ไปที่หน้ากรอกข้อมูล
-        this.router.navigate(['/mainform']);
-      }
-    });
   }
 
-  chackFacebookLogin() {
-    this.authService.readyState.subscribe(res=>{
-      console.log("readyState: ",res);
-    });
+  chackStatusUserlogIn(type) {
+    console.log("type: ",type);
+    
+    this.authService.authState.subscribe((user) => {
+      console.log("get user: ",user);
+      this.user = user;
+      this.loggedIn = (user != null);
+      let setUser;
+      
+      if(this.user){
+        if (this.user.provider == "FACEBOOK") {
+          console.log("Login Facebook.");
+          setUser = {
+            "first_name": this.user.facebook.first_name,
+            "last_name": this.user.facebook.last_name,
+            "fb_id": this.user.facebook.id,
+            "email": this.user.facebook.email,
+            "picture": this.user.facebook.picture,
+            "provider": this.user.provider
+          };
+        }else{
+          console.log("Login Google.");
+          setUser = {
+            "first_name": this.user.firstName,
+            "last_name": this.user.lastName,
+            "gg_id": this.user.id,
+            "email": this.user.email,
+            "picture": this.user.photoUrl,
+            "provider": this.user.provider
+          };
+        }
 
-    this.authService.authState.subscribe(res=>{
-      console.log("authState: ",res);
+        // เก็บข้อมูลลงบน localstorage
+        localStorage.setItem('loggedIn', JSON.stringify(this.loggedIn));
+        localStorage.setItem('userProfile', JSON.stringify(setUser));
+        // ปิด popup ฟลังทำงานเสร็จ
+        $('#modalContent').modal('hide');
+      }
+      this.btnShare = true;
     });
   } 
 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+
+    this.chackStatusUserlogIn('facebook');
+  } 
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.chackStatusUserlogIn('google');
   } 
  
-  signOutFB(): void {
-    this.authService.signOut;
+  signOut(): void {
+    // this.authService.signOut;
     // ลบข้อมูลออกจาก localstorage
     this.loggedIn = false;
     this.btnShare = false;
     localStorage.setItem('loggedIn', JSON.stringify(this.loggedIn));
     localStorage.setItem('userProfile', '');
+    
+    this.authService.signOut().then(res=>{
+      console.log("signOut: ", res);
+      
+    });
 
     console.log("logout!!!");
-    
   }
 
   checkStatusLogin(){

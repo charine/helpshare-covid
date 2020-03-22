@@ -12,6 +12,10 @@ import { MaintableComponent } from './maintable/maintable.component';
 
 const config = new AuthServiceConfig([
   {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("728310501707-64gic0snuqrbtcea5h6ak1r13n5tihok.apps.googleusercontent.com")
+  },
+  {
     id: FacebookLoginProvider.PROVIDER_ID,
     provider: new FacebookLoginProvider('226823501798949')
   }
